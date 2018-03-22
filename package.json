@@ -10,7 +10,7 @@
     "DOM",
     "element"
   ],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "ebam": {
     "entry": "src/index.js",
