@@ -58,24 +58,23 @@ class HoverBehavior extends Evented {
             this.element.style.cursor = cursor;
         }
     }
-    on(event, listener, options){
+    on(event, delegate, listener, options){
         if(event === 'hover'){
-            return super.on('mouseover', listener, options);
+            return super.on('mouseover', delegate, listener, options);
         }else if(event === 'unhover'){
-            return super.on('mouseleave', listener, options);
+            return super.on('mouseout', delegate, listener, options);
         }
         return this;
     }
-    off(event, listener, options){
+    off(event, delegate, listener, options){
         if(event === 'hover'){
-            return super.off('mouseover', listener, options);
+            return super.off('mouseover', delegate, listener, options);
         }else if(event === 'unhover'){
-            return super.off('mouseleave', listener, options);
+            return super.off('mouseout', delegate, listener, options);
         }
         return this;
     }
 }
-
 
 
 export function hoverize(element, options){

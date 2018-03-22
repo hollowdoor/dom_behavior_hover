@@ -63,19 +63,19 @@ var HoverBehavior = (function (Evented) {
             this.element.style.cursor = cursor;
         }
     };
-    HoverBehavior.prototype.on = function on (event, listener, options){
+    HoverBehavior.prototype.on = function on (event, delegate, listener, options){
         if(event === 'hover'){
-            return Evented.prototype.on.call(this, 'mouseover', listener, options);
+            return Evented.prototype.on.call(this, 'mouseover', delegate, listener, options);
         }else if(event === 'unhover'){
-            return Evented.prototype.on.call(this, 'mouseleave', listener, options);
+            return Evented.prototype.on.call(this, 'mouseout', delegate, listener, options);
         }
         return this;
     };
-    HoverBehavior.prototype.off = function off (event, listener, options){
+    HoverBehavior.prototype.off = function off (event, delegate, listener, options){
         if(event === 'hover'){
-            return Evented.prototype.off.call(this, 'mouseover', listener, options);
+            return Evented.prototype.off.call(this, 'mouseover', delegate, listener, options);
         }else if(event === 'unhover'){
-            return Evented.prototype.off.call(this, 'mouseleave', listener, options);
+            return Evented.prototype.off.call(this, 'mouseout', delegate, listener, options);
         }
         return this;
     };
@@ -84,7 +84,6 @@ var HoverBehavior = (function (Evented) {
 
     return HoverBehavior;
 }(Evented));
-
 
 
 function hoverize(element, options){

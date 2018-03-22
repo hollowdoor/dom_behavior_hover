@@ -13,3 +13,14 @@ const hover = hoverize(el, {
         //hover.destroy();
     }
 });
+
+const hover2 = hoverize(document.querySelector('ul'), {
+    target: 'li',
+    hover(e){
+        e.target.style.opacity = 0.5;
+    },
+    unhover(e){
+        e.target.style.opacity = 1;
+        //hover.destroy();
+    }
+});

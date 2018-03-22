@@ -458,19 +458,19 @@ var HoverBehavior = (function (Evented) {
             this.element.style.cursor = cursor;
         }
     };
-    HoverBehavior.prototype.on = function on (event, listener, options){
+    HoverBehavior.prototype.on = function on (event, delegate, listener, options){
         if(event === 'hover'){
-            return Evented.prototype.on.call(this, 'mouseover', listener, options);
+            return Evented.prototype.on.call(this, 'mouseover', delegate, listener, options);
         }else if(event === 'unhover'){
-            return Evented.prototype.on.call(this, 'mouseleave', listener, options);
+            return Evented.prototype.on.call(this, 'mouseout', delegate, listener, options);
         }
         return this;
     };
-    HoverBehavior.prototype.off = function off (event, listener, options){
+    HoverBehavior.prototype.off = function off (event, delegate, listener, options){
         if(event === 'hover'){
-            return Evented.prototype.off.call(this, 'mouseover', listener, options);
+            return Evented.prototype.off.call(this, 'mouseover', delegate, listener, options);
         }else if(event === 'unhover'){
-            return Evented.prototype.off.call(this, 'mouseleave', listener, options);
+            return Evented.prototype.off.call(this, 'mouseout', delegate, listener, options);
         }
         return this;
     };
@@ -479,7 +479,6 @@ var HoverBehavior = (function (Evented) {
 
     return HoverBehavior;
 }(Evented));
-
 
 
 function hoverize(element, options){
@@ -496,6 +495,17 @@ var hover = hoverize(el, {
     },
     unhover: function unhover(){
         this.style.opacity = 1;
+        //hover.destroy();
+    }
+});
+
+var hover2 = hoverize(document.querySelector('ul'), {
+    target: 'li',
+    hover: function hover(e){
+        e.target.style.opacity = 0.5;
+    },
+    unhover: function unhover(e){
+        e.target.style.opacity = 1;
         //hover.destroy();
     }
 });
